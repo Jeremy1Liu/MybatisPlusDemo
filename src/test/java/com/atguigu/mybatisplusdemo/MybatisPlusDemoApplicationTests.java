@@ -1,10 +1,18 @@
 package com.atguigu.mybatisplusdemo;
 
 import com.atguigu.mybatisplusdemo.mapper.DiseaseMapper;
+import com.atguigu.mybatisplusdemo.mapper.DoctorMapper;
 import com.atguigu.mybatisplusdemo.mapper.HospitalMapper;
+import com.atguigu.mybatisplusdemo.mapper.PrecautionMapper;
 import com.atguigu.mybatisplusdemo.mapper.UserMapper;
+import com.atguigu.mybatisplusdemo.mapper.UserPrecautionMapper;
 import com.atguigu.mybatisplusdemo.pojo.Disease;
+import com.atguigu.mybatisplusdemo.pojo.Doctor;
+import com.atguigu.mybatisplusdemo.pojo.Hospital;
+import com.atguigu.mybatisplusdemo.pojo.Precaution;
 import com.atguigu.mybatisplusdemo.pojo.User;
+import com.atguigu.mybatisplusdemo.pojo.UserPrecaution;
+import com.atguigu.mybatisplusdemo.service.UserService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +31,19 @@ class MybatisPlusDemoApplicationTests {
   UserMapper userMapper;
 
   @Autowired
+  UserService userService;
+
+  @Autowired
   HospitalMapper hospitalMapper;
+
+  @Autowired
+  PrecautionMapper precautionMapper;
+
+  @Autowired
+  UserPrecautionMapper userPrecautionMapper;
+
+  @Autowired
+  DoctorMapper doctorMapper;
 
 
   @Test
@@ -38,7 +58,6 @@ class MybatisPlusDemoApplicationTests {
   void testAddUser() {
     User user = new User();
 //    user.setId(1);
-    user.setName("test");
     user.setEmail("t@g.com");
     user.setAge(20);
     user.setGender("male");
@@ -63,10 +82,10 @@ class MybatisPlusDemoApplicationTests {
   @Test
   void testInsertAll() {
     User user = new User();
-    user.setName("testInsertprocedure");
+
     user.setAge(20);
 
-    int i = userMapper.callCreateUserProcedure(user.getName(), user.getEmail(), user.getAge(), user.getGender());
+    int i = userMapper.callCreateUserProcedure(user.getFirstName(), user.getEmail(), user.getAge(), user.getGender());
     System.out.println(i);
   }
 
@@ -75,6 +94,45 @@ class MybatisPlusDemoApplicationTests {
     User user = userMapper.selectById(391745542);
     user.setEmail("a@g.com");
     int res = userMapper.updateById(user);
+    System.out.println(res);
+  }
+
+
+  @Test
+  void testAddHospital() {
+    Hospital hospital = new Hospital();
+    hospital.setId(1);
+    hospital.setName("BosGeneral");
+    int res = hospitalMapper.insert(hospital);
+    System.out.println(res);
+  }
+
+
+
+  @Test
+  void testGetPrecautionsId(){
+    Precaution precautions = precautionMapper.selectById(1);
+    System.out.println(precautions);
+  }
+
+  @Test
+  void testAddUserPrecaution(){
+    UserPrecaution userPrecaution = new UserPrecaution();
+    userPrecaution.setUserId(1);
+    userPrecaution.setPrecautionId(1);
+    int res = userPrecautionMapper.insert(userPrecaution);
+    System.out.println(res);
+  }
+
+  @Test
+  void addDoctor(){
+    Doctor doctor = new Doctor();
+    doctor.setFirstName("Jeff");
+    doctor.setLastName("Sancho");
+    doctor.setSpecializationName("Cardiologist");
+    doctor.setQualification("MBBS");
+    doctor.setHospitalId(1);
+    int res = doctorMapper.insert(doctor);
     System.out.println(res);
   }
 }

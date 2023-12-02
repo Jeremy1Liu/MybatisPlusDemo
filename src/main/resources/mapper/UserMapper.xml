@@ -6,57 +6,20 @@
 
     <resultMap id="BaseResultMap" type="com.atguigu.mybatisplusdemo.pojo.User">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="firstName" column="first_name" jdbcType="VARCHAR"/>
+            <result property="lastName" column="last_name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="gender" column="gender" jdbcType="VARCHAR"/>
             <result property="hospitalId" column="hospital_id" jdbcType="INTEGER"/>
             <result property="diseaseId" column="disease_id" jdbcType="INTEGER"/>
+            <result property="doctorId" column="doctor_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,email,
-        age,gender,hospital_id,
-        disease_id
+        id,first_name,last_name,
+        email,age,gender,
+        hospital_id,disease_id,doctor_id
+        // call afunction()
     </sql>
-    <update id="updateUserById">
-        {call UpdateUser()}
-
-
-    </update>
-
-    <select id="getById" resultMap="BaseResultMap">
-        {call GetUserById(#{id,mode=IN,jdbcType=INTEGER})}
-    </select>
-
-
-    <delete id="deleteById">
-        {call DeleteUser(#{id,mode=IN,jdbcType=INTEGER})}
-    </delete>
-
-    <delete id="deleteByAgeAndGenderStartWith">
-        delete
-        from user
-        where age = #{age,jdbcType=NUMERIC}
-          AND gender like CONCAT('%', #{gender,jdbcType=VARCHAR})
-    </delete>
-
-    <insert id="callCreateUserProcedure" statementType="CALLABLE">
-        {call CreateUser(#{p_name, mode=IN, jdbcType=VARCHAR},
-                         #{p_email, mode=IN, jdbcType=VARCHAR},
-                         #{p_age, mode=IN, jdbcType=INTEGER},
-                         #{p_gender, mode=IN, jdbcType=VARCHAR})}
-    </insert>
-
-
-    <insert id="insertAll">
-        insert into user
-        (id, name, email,
-         age, gender, hospital_id,
-         disease_id)
-        values (#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-                #{age,jdbcType=NUMERIC}, #{gender,jdbcType=VARCHAR}, #{hospitalId,jdbcType=NUMERIC},
-                #{diseaseId,jdbcType=NUMERIC})
-
-    </insert>
 </mapper>

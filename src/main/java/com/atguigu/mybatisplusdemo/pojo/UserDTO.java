@@ -4,62 +4,65 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 
-/**
- * 
- * @TableName user
- */
-@TableName(value ="user")
 @Data
-public class User implements Serializable {
+public class UserDTO {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 
+     *
      */
     private String firstName;
 
     /**
-     * 
+     *
      */
     private String lastName;
 
     /**
-     * 
+     *
      */
     private String email;
 
     /**
-     * 
+     *
      */
     private Integer age;
 
     /**
-     * 
+     *
      */
     private String gender;
 
     /**
-     * 
+     *
      */
     private Integer hospitalId;
 
     /**
-     * 
+     *
      */
     private Integer diseaseId;
 
     /**
-     * 
+     *
      */
     private Integer doctorId;
 
+    private List<Precaution> precautions;
+
+    private List<Symptoms> symptoms;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
 }

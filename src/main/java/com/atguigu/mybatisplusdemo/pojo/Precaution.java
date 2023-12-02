@@ -8,14 +8,23 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * @TableName hospital
+ * 
+ * @TableName precaution
  */
-@TableName(value ="hospital")
+@TableName(value ="precaution")
 @Data
-public class Hospital implements Serializable {
+public class Precaution implements Serializable {
+    /**
+     * 
+     */
+    @TableId
     private Integer id;
 
+    /**
+     * 
+     */
     private String name;
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

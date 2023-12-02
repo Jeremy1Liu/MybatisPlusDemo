@@ -5,15 +5,16 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 
 /**
  * 
- * @TableName user
+ * @TableName comments
  */
-@TableName(value ="user")
+@TableName(value ="comments")
 @Data
-public class User implements Serializable {
+public class Comments implements Serializable {
     /**
      * 
      */
@@ -23,42 +24,22 @@ public class User implements Serializable {
     /**
      * 
      */
-    private String firstName;
+    private Integer blogId;
 
     /**
      * 
      */
-    private String lastName;
+    private Integer userId;
 
     /**
      * 
      */
-    private String email;
+    private Date date;
 
     /**
      * 
      */
-    private Integer age;
-
-    /**
-     * 
-     */
-    private String gender;
-
-    /**
-     * 
-     */
-    private Integer hospitalId;
-
-    /**
-     * 
-     */
-    private Integer diseaseId;
-
-    /**
-     * 
-     */
-    private Integer doctorId;
+    private String content;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
