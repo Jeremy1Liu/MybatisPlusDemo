@@ -24,6 +24,12 @@ public class UserSymptomsServiceImpl extends ServiceImpl<UserSymptomsMapper, Use
   UserSymptomsMapper userSymptomsMapper;
 
   @Override
+  public List<Symptoms> getSymptomsByUserId(Integer id) {
+    userSymptomsMapper.getSymptomsByUserId(id);
+    return null;
+  }
+
+  @Override
   public void saveUserAndSymptoms(int savedId, List<Symptoms> symptoms) {
     for (Symptoms symptom : symptoms) {
       // save user symptom

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author Quanle
 * @description 针对表【disease】的数据库操作Service实现
-* @createDate 2023-11-30 14:07:23
+* @createDate 2023-12-01 21:29:09
 */
 @Service
 public class DiseaseServiceImpl extends ServiceImpl<DiseaseMapper, Disease>

@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserSymptomsMapper extends BaseMapper<UserSymptoms> {
 
+
+  void getSymptomsByUserId(Integer id);
 }
 
 

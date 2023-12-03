@@ -85,9 +85,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-      List<User> users = userMapper.selectAllUserWithHospital();
-      return users;
+    public List<UserDTO> getAllUsersFullInfo() {
+      List<UserDTO> userDTOs = userService.getAllUsersFullInfo();
+      return userDTOs;
     }
 
   @GetMapping("/precautions")

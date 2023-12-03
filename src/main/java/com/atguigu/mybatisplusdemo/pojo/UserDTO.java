@@ -58,6 +58,10 @@ public class UserDTO {
      */
     private Integer doctorId;
 
+    private Disease disease;
+
+    private Doctor doctor;
+
     private List<Precaution> precautions;
 
     private List<Symptoms> symptoms;

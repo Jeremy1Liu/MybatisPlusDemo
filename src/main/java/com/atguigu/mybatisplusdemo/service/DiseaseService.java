@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 /**
 * @author Quanle
 * @description 针对表【disease】的数据库操作Service
-* @createDate 2023-11-30 14:07:23
+* @createDate 2023-12-01 21:29:09
 */
 public interface DiseaseService extends IService<Disease> {
 

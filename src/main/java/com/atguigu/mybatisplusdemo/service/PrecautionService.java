@@ -14,4 +14,5 @@ public interface PrecautionService extends IService<Precaution> {
 
   void saveUserAndPrecautions(Integer id, List<Precaution> precautions);
 
+  List<Precaution> getPrecautionsByUserId(Integer id);
 }

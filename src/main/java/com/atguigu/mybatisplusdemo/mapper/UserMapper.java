@@ -24,11 +24,6 @@ public interface UserMapper extends BaseMapper<User> {
 
 
 
-  int insertAll(User user);
-
-  List<User> getById(@Param("id") Integer id);
-
-
   //id, name, email, age, gender, hospital_id, hospital_name, disease_id, disease_name
   @Select("select * from user")
   @Results(

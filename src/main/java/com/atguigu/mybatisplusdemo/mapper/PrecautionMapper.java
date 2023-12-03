@@ -17,6 +17,7 @@ public interface PrecautionMapper extends BaseMapper<Precaution> {
 
   List<Precaution> selectByUserId(@Param("userId") Integer userId);
 
+  List<Precaution> getPrecautionsByUserId(Integer id);
 }
 
 

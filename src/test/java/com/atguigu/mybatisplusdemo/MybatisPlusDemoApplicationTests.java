@@ -4,12 +4,14 @@ import com.atguigu.mybatisplusdemo.mapper.DiseaseMapper;
 import com.atguigu.mybatisplusdemo.mapper.DoctorMapper;
 import com.atguigu.mybatisplusdemo.mapper.HospitalMapper;
 import com.atguigu.mybatisplusdemo.mapper.PrecautionMapper;
+import com.atguigu.mybatisplusdemo.mapper.SymptomsMapper;
 import com.atguigu.mybatisplusdemo.mapper.UserMapper;
 import com.atguigu.mybatisplusdemo.mapper.UserPrecautionMapper;
 import com.atguigu.mybatisplusdemo.pojo.Disease;
 import com.atguigu.mybatisplusdemo.pojo.Doctor;
 import com.atguigu.mybatisplusdemo.pojo.Hospital;
 import com.atguigu.mybatisplusdemo.pojo.Precaution;
+import com.atguigu.mybatisplusdemo.pojo.Symptoms;
 import com.atguigu.mybatisplusdemo.pojo.User;
 import com.atguigu.mybatisplusdemo.pojo.UserPrecaution;
 import com.atguigu.mybatisplusdemo.service.UserService;
@@ -45,6 +47,9 @@ class MybatisPlusDemoApplicationTests {
   @Autowired
   DoctorMapper doctorMapper;
 
+  @Autowired
+  SymptomsMapper symptomsMapper;
+
 
   @Test
   void testGetAllDisease() {
@@ -66,11 +71,6 @@ class MybatisPlusDemoApplicationTests {
   }
 
 
-  @Test
-  void testGetById(){
-    List<User> users = userMapper.getById(1);
-    System.out.println(users);
-  }
 
   // test delete user by calling Mysql procedure
   @Test
@@ -134,5 +134,17 @@ class MybatisPlusDemoApplicationTests {
     doctor.setHospitalId(1);
     int res = doctorMapper.insert(doctor);
     System.out.println(res);
+  }
+
+  @Test
+  void testGetSymptomsByUserId(){
+    List<Symptoms> symptoms = symptomsMapper.getSymptomsByUserId(8);
+    System.out.println(symptoms);
+  }
+
+  @Test
+  void testGetPrecautionsByUserId(){
+    List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(8);
+    System.out.println(precautions);
   }
 }

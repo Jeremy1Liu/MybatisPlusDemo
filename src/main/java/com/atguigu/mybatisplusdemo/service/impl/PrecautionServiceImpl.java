@@ -24,6 +24,9 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
   @Autowired
   UserPrecautionMapper userPrecautionMapper;
 
+  @Autowired
+  PrecautionMapper precautionMapper;
+
 
   @Override
   public void saveUserAndPrecautions(Integer userId, List<Precaution> precautions) {
@@ -34,6 +37,12 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
       userPrecaution.setPrecautionId(precaution.getId());
       userPrecautionMapper.insert(userPrecaution);
     }
+  }
+
+  @Override
+  public List<Precaution> getPrecautionsByUserId(Integer id) {
+    List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(id);
+    return precautions;
   }
 }
 
