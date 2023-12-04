@@ -17,10 +17,7 @@ import com.atguigu.mybatisplusdemo.service.UserSymptomsService;
 import org.apache.ibatis.annotations.Param;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -82,6 +79,11 @@ public class UserController {
       int res = userMapper.updateById(user);
       System.out.println(user);
       return res;
+    }
+
+    @GetMapping("/users/{id}")
+    public UserDTO getUserById(@PathVariable("id") Integer id) {
+        return userService.getUserById(id);
     }
 
     @GetMapping("/users")

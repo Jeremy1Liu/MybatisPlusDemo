@@ -111,6 +111,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
       return -1;
     }
   }
+
+  @Override
+  public UserDTO getUserById(Integer id) {
+    User user = userMapper.selectById(id);
+    ModelMapper modelMapper = new ModelMapper();
+    UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+    // get disease object
+    Disease disease = diseaseMapper.selectById(userDTO.getDiseaseId());
+    userDTO.setDisease(disease);
+    //get doctor object
+    Doctor doctor = doctorMapper.selectById(userDTO.getDoctorId());
+    userDTO.setDoctor(doctor);
+    // get Symptoms list
+    List<Symptoms> symptoms = symptomsService.getSymptomsByUserId(userDTO.getId());
+    userDTO.setSymptoms(symptoms);
+    List<Precaution> precautions = precautionService.getPrecautionsByUserId(userDTO.getId());
+    userDTO.setPrecautions(precautions);
+    return userDTO;
+  }
 }
 
 
