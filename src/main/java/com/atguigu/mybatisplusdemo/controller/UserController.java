@@ -73,9 +73,10 @@ public class UserController {
     return res;
   }
 
-  @GetMapping("/users/{id}")
-  public UserDTO getUserById(@PathVariable("id") Integer id) {
-    return userService.getUserById(id);
+  @GetMapping("/user/{id}")
+  public User getUserById(@PathVariable("id") Integer id) {
+
+    return userService.getById(id);
   }
 
   @GetMapping("/usersFullInfo")
