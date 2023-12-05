@@ -4,13 +4,11 @@ import com.atguigu.mybatisplusdemo.mapper.DiseaseMapper;
 import com.atguigu.mybatisplusdemo.mapper.PrecautionMapper;
 import com.atguigu.mybatisplusdemo.mapper.UserMapper;
 import com.atguigu.mybatisplusdemo.pojo.Disease;
-import com.atguigu.mybatisplusdemo.pojo.Doctor;
 import com.atguigu.mybatisplusdemo.pojo.Precaution;
 import com.atguigu.mybatisplusdemo.pojo.Symptoms;
 import com.atguigu.mybatisplusdemo.pojo.User;
 import com.atguigu.mybatisplusdemo.pojo.UserDTO;
 import com.atguigu.mybatisplusdemo.service.DiseaseService;
-import com.atguigu.mybatisplusdemo.service.DoctorService;
 import com.atguigu.mybatisplusdemo.service.PrecautionService;
 import com.atguigu.mybatisplusdemo.service.UserPrecautionService;
 import com.atguigu.mybatisplusdemo.service.UserService;
@@ -26,97 +24,63 @@ import java.util.List;
 @RestController
 public class UserController {
 
+  @Autowired UserMapper userMapper;
 
+  @Autowired UserService userService;
 
-  @Autowired
-  UserMapper userMapper;
+  @Autowired PrecautionMapper precautionMapper;
 
-  @Autowired
-  UserService userService;
+  @Autowired PrecautionService precautionService;
 
-  @Autowired
-  PrecautionMapper precautionMapper;
+  @Autowired UserPrecautionService userPrecautionService;
 
-  @Autowired
-  PrecautionService precautionService;
+  @Autowired UserSymptomsService userSymptomsService;
 
-  @Autowired
-  UserPrecautionService userPrecautionService;
+  //   //get all disease
+  //   @GetMapping("/disease")
+  //   public List<Disease> getAllDisease() {
+  //      List<Disease> diseases = diseaseService.list();
+  //      System.out.println(diseases);
+  //      return diseases;
+  //   }
 
-  @Autowired
-  UserSymptomsService userSymptomsService;
+  @PostMapping("/user/create")
+  public int createUser(@RequestBody UserDTO userDTO) {
+    //      int res = userMapper.insert(user);
 
-  @Autowired
-  DoctorService doctorService;
+    // userDTO to user
+    //      ModelMapper modelMapper = new ModelMapper();
+    //      User user = modelMapper.map(userDTO, User.class);
 
-//   //get all disease
-//   @GetMapping("/disease")
-//   public List<Disease> getAllDisease() {
-//      List<Disease> diseases = diseaseService.list();
-//      System.out.println(diseases);
-//      return diseases;
-//   }
+    // insert user base info
+    int savedId = userService.insert(userDTO);
 
-   @PostMapping("/user/create")
-    public int createUser(@RequestBody UserDTO userDTO) {
-//      int res = userMapper.insert(user);
+    // insert user precautions
+    List<Precaution> precautions = userDTO.getPrecautions();
+    precautionService.saveUserAndPrecautions(savedId, precautions);
 
-      // userDTO to user
-//      ModelMapper modelMapper = new ModelMapper();
-//      User user = modelMapper.map(userDTO, User.class);
-
-      // insert user base info
-      int savedId = userService.insert(userDTO);
-
-      // insert user precautions
-      List<Precaution> precautions = userDTO.getPrecautions();
-      precautionService.saveUserAndPrecautions(savedId, precautions);
-
-      List<Symptoms> symptoms = userDTO.getSymptoms();
-      userSymptomsService.saveUserAndSymptoms(savedId, symptoms);
-      System.out.println(userDTO);
-      return savedId;
-    }
-
-//    update user
-    @PostMapping("/user")
-    public int updateUser(@RequestBody User user) {
-      int res = userMapper.updateById(user);
-      System.out.println(user);
-      return res;
-    }
-
-    @GetMapping("/users/{id}")
-    public UserDTO getUserById(@PathVariable("id") Integer id) {
-        return userService.getUserById(id);
-    }
-
-    @GetMapping("/users")
-    public List<UserDTO> getAllUsersFullInfo() {
-      List<UserDTO> userDTOs = userService.getAllUsersFullInfo();
-      return userDTOs;
-    }
-
-//    @GetMapping("/user/{id}")
-//    public UserDTO getUserFullInfoById(@Param("id") int id) {
-//      UserDTO userDTO = userService.getUserFullInfoById(id);
-//      return userDTO;
-//    }
-
-  @GetMapping("/precautions")
-  public List<Precaution> getPrecautionsByUserId() {
-    List<Precaution> precautions = precautionMapper.selectByUserId(1);
-    return precautions;
+    List<Symptoms> symptoms = userDTO.getSymptoms();
+    userSymptomsService.saveUserAndSymptoms(savedId, symptoms);
+    System.out.println(userDTO);
+    return savedId;
   }
 
-  @GetMapping("/doctors")
-  public List<Doctor> getDoctorsByUserId() {
-    List<Doctor> doctors = doctorService.listAll();
-
-    return doctors;
+  //    update user
+  @PostMapping("/user")
+  public int updateUser(@RequestBody User user) {
+    int res = userMapper.updateById(user);
+    System.out.println(user);
+    return res;
   }
 
-//  TODO: update, insert, delete
+  @GetMapping("/users/{id}")
+  public UserDTO getUserById(@PathVariable("id") Integer id) {
+    return userService.getUserById(id);
+  }
 
-
+  @GetMapping("/users")
+  public List<UserDTO> getAllUsersFullInfo() {
+    List<UserDTO> userDTOs = userService.getAllUsersFullInfo();
+    return userDTOs;
+  }
 }

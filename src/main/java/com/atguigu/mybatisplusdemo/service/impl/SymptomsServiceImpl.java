@@ -11,24 +11,31 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author Quanle
-* @description 针对表【symptoms】的数据库操作Service实现
-* @createDate 2023-12-01 18:02:57
-*/
+ * @author Quanle
+ * @description 针对表【symptoms】的数据库操作Service实现
+ * @createDate 2023-12-01 18:02:57
+ */
 @Service
 public class SymptomsServiceImpl extends ServiceImpl<SymptomsMapper, Symptoms>
-    implements SymptomsService{
+    implements SymptomsService {
 
-  @Autowired
-  SymptomsMapper symptomsMapper;
+  @Autowired SymptomsMapper symptomsMapper;
 
   @Override
   public List<Symptoms> getSymptomsByUserId(Integer id) {
     List<Symptoms> symptoms = symptomsMapper.getSymptomsByUserId(id);
     return symptoms;
   }
+
+  @Override
+  public List<Symptoms> getSymptomsByDiseaseId(Integer diseaseId) {
+    List<Symptoms> symptoms = symptomsMapper.getSymptomsByDiseaseId(diseaseId);
+    return symptoms;
+  }
+
+  @Override
+  public List<Symptoms> getSymptomsByDiseaseName(String diseaseName) {
+    List<Symptoms> symptoms = symptomsMapper.getSymptomsByDiseaseName(diseaseName);
+    return symptoms;
+  }
 }
-
-
-
-

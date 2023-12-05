@@ -23,4 +23,28 @@
             where user_id = #{userId}
         )
     </select>
+    <select id="getSymptomsByDiseaseId"
+            resultType="com.atguigu.mybatisplusdemo.pojo.Symptoms">
+        select *
+        from symptoms
+        where id in (
+            select symptoms_id
+            from disease_symptoms
+            where disease_id = #{diseaseId}
+        )
+    </select>
+    <select id="getSymptomsByDiseaseName"
+            resultType="com.atguigu.mybatisplusdemo.pojo.Symptoms">
+        select *
+        from symptoms
+        where id in (
+            select symptoms_id
+            from disease_symptoms
+            where disease_id = (
+                select id
+                from disease
+                where name = #{diseaseName}
+            )
+        )
+    </select>
 </mapper>

@@ -13,4 +13,8 @@ import java.util.List;
 public interface SymptomsService extends IService<Symptoms> {
 
   List<Symptoms> getSymptomsByUserId(Integer id);
+  
+  List<Symptoms> getSymptomsByDiseaseId(Integer diseaseId);
+
+  List<Symptoms> getSymptomsByDiseaseName(String diseaseName);
 }

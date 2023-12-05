@@ -44,6 +44,18 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
     List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(id);
     return precautions;
   }
+
+  @Override
+  public List<Precaution> getPrecautionByDiseaseId(Integer diseaseId) {
+    List<Precaution> precautions = precautionMapper.getPrecautionByDiseaseId(diseaseId);
+    return precautions;
+  }
+
+  @Override
+  public List<Precaution> getPrecautionByDiseaseName(String diseaseName) {
+    List<Precaution> precautions = precautionMapper.getPrecautionByDiseaseName(diseaseName);
+    return precautions;
+  }
 }
 
 
