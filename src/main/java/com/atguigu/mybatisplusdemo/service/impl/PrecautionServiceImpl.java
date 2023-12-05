@@ -47,7 +47,8 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
 
   @Override
   public List<Precaution> getPrecautionsByUserId(Integer id) {
-    return null;
+    List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(id);
+    return precautions;
   }
 
   @Override
