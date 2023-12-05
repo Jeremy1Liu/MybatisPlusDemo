@@ -22,4 +22,5 @@
         hospital_id,disease_id,doctor_id
         // call afunction()
     </sql>
+
 </mapper>

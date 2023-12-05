@@ -4,11 +4,13 @@ import com.atguigu.mybatisplusdemo.mapper.DiseaseMapper;
 import com.atguigu.mybatisplusdemo.mapper.PrecautionMapper;
 import com.atguigu.mybatisplusdemo.mapper.UserMapper;
 import com.atguigu.mybatisplusdemo.pojo.Disease;
+import com.atguigu.mybatisplusdemo.pojo.Doctor;
 import com.atguigu.mybatisplusdemo.pojo.Precaution;
 import com.atguigu.mybatisplusdemo.pojo.Symptoms;
 import com.atguigu.mybatisplusdemo.pojo.User;
 import com.atguigu.mybatisplusdemo.pojo.UserDTO;
 import com.atguigu.mybatisplusdemo.service.DiseaseService;
+import com.atguigu.mybatisplusdemo.service.DoctorService;
 import com.atguigu.mybatisplusdemo.service.PrecautionService;
 import com.atguigu.mybatisplusdemo.service.UserPrecautionService;
 import com.atguigu.mybatisplusdemo.service.UserService;
@@ -43,6 +45,9 @@ public class UserController {
 
   @Autowired
   UserSymptomsService userSymptomsService;
+
+  @Autowired
+  DoctorService doctorService;
 
 //   //get all disease
 //   @GetMapping("/disease")
@@ -92,11 +97,26 @@ public class UserController {
       return userDTOs;
     }
 
+//    @GetMapping("/user/{id}")
+//    public UserDTO getUserFullInfoById(@Param("id") int id) {
+//      UserDTO userDTO = userService.getUserFullInfoById(id);
+//      return userDTO;
+//    }
+
   @GetMapping("/precautions")
   public List<Precaution> getPrecautionsByUserId() {
     List<Precaution> precautions = precautionMapper.selectByUserId(1);
     return precautions;
   }
+
+  @GetMapping("/doctors")
+  public List<Doctor> getDoctorsByUserId() {
+    List<Doctor> doctors = doctorService.listAll();
+
+    return doctors;
+  }
+
+//  TODO: update, insert, delete
 
 
 }

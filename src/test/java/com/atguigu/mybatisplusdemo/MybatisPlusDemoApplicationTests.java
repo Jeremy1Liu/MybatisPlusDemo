@@ -79,15 +79,15 @@ class MybatisPlusDemoApplicationTests {
     System.out.println(res);
   }
 
-  @Test
-  void testInsertAll() {
-    User user = new User();
-
-    user.setAge(20);
-
-    int i = userMapper.callCreateUserProcedure(user.getFirstName(), user.getEmail(), user.getAge(), user.getGender());
-    System.out.println(i);
-  }
+//  @Test
+//  void testInsertAll() {
+//    User user = new User();
+//
+//    user.setAge(20);
+//
+//    int i = userMapper.callCreateUserProcedure(user.getFirstName(), user.getEmail(), user.getAge(), user.getGender());
+//    System.out.println(i);
+//  }
 
   @Test
   void testUpdateUser(){
@@ -108,7 +108,6 @@ class MybatisPlusDemoApplicationTests {
   }
 
 
-
   @Test
   void testGetPrecautionsId(){
     Precaution precautions = precautionMapper.selectById(1);
@@ -127,12 +126,12 @@ class MybatisPlusDemoApplicationTests {
   @Test
   void addDoctor(){
     Doctor doctor = new Doctor();
-    doctor.setFirstName("Jeff");
+    doctor.setFirstName("Jeffery");
     doctor.setLastName("Sancho");
     doctor.setSpecializationName("Cardiologist");
     doctor.setQualification("MBBS");
     doctor.setHospitalId(1);
-    int res = doctorMapper.insert(doctor);
+    int res = doctorMapper.insertOneDoctor(doctor);
     System.out.println(res);
   }
 
@@ -146,5 +145,11 @@ class MybatisPlusDemoApplicationTests {
   void testGetPrecautionsByUserId(){
     List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(8);
     System.out.println(precautions);
+  }
+
+  @Test
+  void testGetAllDoctors(){
+    List<Doctor> doctors = doctorMapper.getAllDoctors();
+    System.out.println(doctors);
   }
 }

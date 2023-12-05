@@ -3,6 +3,10 @@ package com.atguigu.mybatisplusdemo.mapper;
 import com.atguigu.mybatisplusdemo.pojo.Doctor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import org.apache.ibatis.annotations.Insert;
+
+import java.util.List;
+
 /**
 * @author Quanle
 * @description 针对表【doctor】的数据库操作Mapper
@@ -11,6 +15,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface DoctorMapper extends BaseMapper<Doctor> {
 
+
+  int insertOneDoctor(Doctor entity);
+
+
+  List<Doctor> getAllDoctors();
 }
 
 

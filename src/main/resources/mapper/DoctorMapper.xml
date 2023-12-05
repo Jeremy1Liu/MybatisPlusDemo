@@ -17,4 +17,14 @@
         id,first_name,last_name,
         specialization_name,qualification,hospital_id
     </sql>
+    <insert id="insertOneDoctor">
+        {call CreateDoctor( #{firstName, mode=IN, jdbcType=VARCHAR},
+              #{lastName, mode=IN, jdbcType=VARCHAR},
+              #{specializationName, mode=IN, jdbcType=VARCHAR},
+              #{qualification, mode=IN, jdbcType=VARCHAR},
+              #{hospitalId, mode=IN, jdbcType=INTEGER})}
+    </insert>
+    <select id="getAllDoctors" resultType="com.atguigu.mybatisplusdemo.pojo.Doctor">
+        select * from doctor;
+    </select>
 </mapper>

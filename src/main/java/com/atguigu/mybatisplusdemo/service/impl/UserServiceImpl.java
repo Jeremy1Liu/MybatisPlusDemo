@@ -100,6 +100,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
   @Override
   public int insert(UserDTO user) {
     ModelMapper modelMapper = new ModelMapper();
+    modelMapper.typeMap(UserDTO.class, User.class)
+            .addMapping(UserDTO::getDiseaseId, User::setDiseaseId)
+            .addMapping(UserDTO::getDoctorId, User::setDoctorId);
+
     User user1 = modelMapper.map(user, User.class);
     int insert = userMapper.insert(user1);
 //    System.out.println("insert: " + user1);

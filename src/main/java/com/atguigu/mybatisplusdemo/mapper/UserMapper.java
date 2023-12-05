@@ -20,7 +20,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface UserMapper extends BaseMapper<User> {
 
-  int callCreateUserProcedure(String p_name, String p_email, int p_age, String p_gender);
 
 
 
@@ -43,11 +42,6 @@ public interface UserMapper extends BaseMapper<User> {
   )
   List<User> selectAllUserWithHospital();
 
-  int deleteById(@Param("id") Integer id);
-
-  int deleteByAgeAndGenderStartWith(@Param("age") Integer age, @Param("gender") String gender);
-
-  int addAll(User user);
 
 }
 
