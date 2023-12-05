@@ -54,6 +54,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
   @Autowired
   PrecautionService precautionService;
 
+  @Autowired
+  UserSymptomsService userSymptomsService;
+
 //  public List<User> getUsersFullInfo() {
 //    QueryWrapper<User> wrapper = new QueryWrapper<>();
 //    wrapper.isNotNull("hospital_id");  // 筛选出hospital_id不为空的用户
@@ -79,11 +82,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
       UserDTO userDTO = modelMapper.map(user, UserDTO.class);
       userDTOS.add(userDTO);
       // get disease object
-      Disease disease = diseaseMapper.selectById(userDTO.getDiseaseId());
-      userDTO.setDisease(disease);
+
       //get doctor object
-      Doctor doctor = doctorMapper.selectById(userDTO.getDoctorId());
-      userDTO.setDoctor(doctor);
+
       // get Symptoms list
       List<Integer> symptoms = symptomsService.getSymptomsIDsByUserId(userDTO.getId());
       userDTO.setSymptoms(symptoms);
@@ -121,11 +122,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     ModelMapper modelMapper = new ModelMapper();
     UserDTO userDTO = modelMapper.map(user, UserDTO.class);
     // get disease object
-    Disease disease = diseaseMapper.selectById(userDTO.getDiseaseId());
-    userDTO.setDisease(disease);
+
     //get doctor object
-    Doctor doctor = doctorMapper.selectById(userDTO.getDoctorId());
-    userDTO.setDoctor(doctor);
+
     // get Symptoms list
     List<Integer> symptoms = symptomsService.getSymptomsIDsByUserId(userDTO.getId());
     userDTO.setSymptoms(symptoms);
@@ -145,6 +144,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
   @Override
   public int updateUser(UserDTO userDTO) {
+    ModelMapper modelMapper = new ModelMapper();
+    User user = modelMapper.map(userDTO, User.class);
+    int res = userMapper.updateById(user);
+    System.out.println(user);
+//    delete user precautions, then insert new precautions
+    symptomsService.deleteSymptomsByUserId(userDTO.getId());
+    precautionService.deletePrecautionsByUserId(userDTO.getId());
+    List<Integer> symptoms = userDTO.getSymptoms();
+    userSymptomsService.saveUserAndSymptoms(userDTO.getId(), symptoms);
+    List<Integer> precautions = userDTO.getPrecautions();
+    precautionService.saveUserAndPrecautions(userDTO.getId(), precautions);
     return 0;
   }
 }

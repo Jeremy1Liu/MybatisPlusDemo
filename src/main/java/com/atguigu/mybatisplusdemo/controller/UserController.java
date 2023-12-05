@@ -15,6 +15,7 @@ import com.atguigu.mybatisplusdemo.service.UserService;
 import com.atguigu.mybatisplusdemo.service.UserSymptomsService;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +47,7 @@ public class UserController {
 
   @PostMapping("/user/create")
   public int createUser(@RequestBody UserDTO userDTO) {
-    //      int res = userMapper.insert(user);
 
-    // userDTO to user
-    //      ModelMapper modelMapper = new ModelMapper();
-    //      User user = modelMapper.map(userDTO, User.class);
-
-    // insert user base info
     int savedId = userService.insert(userDTO);
 
     // insert user precautions
@@ -75,7 +70,6 @@ public class UserController {
 
   @GetMapping("/user/{id}")
   public User getUserById(@PathVariable("id") Integer id) {
-
     return userService.getById(id);
   }
 
@@ -97,11 +91,12 @@ public class UserController {
     return res;
   }
 
+//  update user
     @PutMapping("/user")
   public int updateUser( @RequestBody UserDTO userDTO) {
     int res = userService.updateUser(userDTO);
-
     return res;
-
   }
+
+
 }

@@ -13,6 +13,7 @@ import com.atguigu.mybatisplusdemo.pojo.Hospital;
 import com.atguigu.mybatisplusdemo.pojo.Precaution;
 import com.atguigu.mybatisplusdemo.pojo.Symptoms;
 import com.atguigu.mybatisplusdemo.pojo.User;
+import com.atguigu.mybatisplusdemo.pojo.UserDTO;
 import com.atguigu.mybatisplusdemo.pojo.UserPrecaution;
 import com.atguigu.mybatisplusdemo.service.UserService;
 
@@ -155,11 +156,13 @@ class MybatisPlusDemoApplicationTests {
 
   @Test
   void testCreateUser(){
-    User user = new User();
-    user.setFirstName("Quanle");
-    user.setLastName("Zhang");
+    UserDTO user = new UserDTO();
+    user.setFirstName("Zhangsan");
+    user.setLastName("Z");
     user.setEmail("qz@g.com");
     user.setAge(20);
+    int insert = userService.insert(user);
+    System.out.println(insert);
 
   }
 }

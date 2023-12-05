@@ -23,7 +23,8 @@ public class SymptomsServiceImpl extends ServiceImpl<SymptomsMapper, Symptoms>
 
   @Override
   public List<Integer> getSymptomsIDsByUserId(Integer id) {
-    return null;
+    List<Integer> symptomsIDsByUserId = symptomsMapper.getSymptomsIDsByUserId(id);
+    return symptomsIDsByUserId;
   }
 
   @Override
