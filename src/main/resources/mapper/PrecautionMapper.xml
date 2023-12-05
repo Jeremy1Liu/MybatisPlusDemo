@@ -12,6 +12,10 @@
     <sql id="Base_Column_List">
         id,name
     </sql>
+    <delete id="deletePrecautionsByUserId">
+        delete from user_precaution
+        where user_id = #{userId}
+    </delete>
 
     <select id="selectByUserId" resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
         SELECT p.*
@@ -19,13 +23,7 @@
                  JOIN user_precaution up ON p.id = up.precaution_id
         WHERE up.user_id = #{userId}
     </select>
-    <select id="getPrecautionsByUserId"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
-        select *
-        from precaution
-        where id in
-              (select precaution_id from user_precaution where user_id = #{userId})
-    </select>
+
     <select id="getPrecautionByDiseaseId"
             resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
         select *
@@ -43,4 +41,18 @@
                where disease_id in
                      (select id from disease where name = #{diseaseName}))
     </select>
+    <select id="getPrecautionsByUserId"
+            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+        select *
+        from precaution
+        where id in
+              (select precaution_id from user_precaution where user_id = #{userId})
+    </select>
+    <select id="getPrecautionsIDsByUserId" resultType="java.lang.Integer">
+        select precaution_id
+        from user_precaution
+        where user_id = #{userId}
+    </select>
+
+
 </mapper>

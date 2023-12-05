@@ -29,20 +29,25 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
 
 
   @Override
-  public void saveUserAndPrecautions(Integer userId, List<Precaution> precautions) {
-    for (Precaution precaution : precautions) {
+  public void saveUserAndPrecautions(Integer userId, List<Integer> precautions) {
+    for (Integer precaution : precautions) {
       // save user precaution
       UserPrecaution userPrecaution = new UserPrecaution();
       userPrecaution.setUserId(userId);
-      userPrecaution.setPrecautionId(precaution.getId());
+      userPrecaution.setPrecautionId(precaution);
       userPrecautionMapper.insert(userPrecaution);
     }
   }
 
   @Override
-  public List<Precaution> getPrecautionsByUserId(Integer id) {
-    List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(id);
+  public List<Integer> getPrecautionsIDsByUserId(Integer id) {
+    List<Integer> precautions = precautionMapper.getPrecautionsIDsByUserId(id);
     return precautions;
+  }
+
+  @Override
+  public List<Precaution> getPrecautionsByUserId(Integer id) {
+    return null;
   }
 
   @Override
@@ -55,6 +60,11 @@ public class PrecautionServiceImpl extends ServiceImpl<PrecautionMapper, Precaut
   public List<Precaution> getPrecautionByDiseaseName(String diseaseName) {
     List<Precaution> precautions = precautionMapper.getPrecautionByDiseaseName(diseaseName);
     return precautions;
+  }
+
+  @Override
+  public void deletePrecautionsByUserId(Integer id) {
+    precautionMapper.deletePrecautionsByUserId(id);
   }
 }
 

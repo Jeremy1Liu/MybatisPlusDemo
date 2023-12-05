@@ -117,8 +117,8 @@ class MybatisPlusDemoApplicationTests {
   @Test
   void testAddUserPrecaution(){
     UserPrecaution userPrecaution = new UserPrecaution();
-    userPrecaution.setUserId(1);
-    userPrecaution.setPrecautionId(1);
+    userPrecaution.setUserId(2);
+    userPrecaution.setPrecautionId(5);
     int res = userPrecautionMapper.insert(userPrecaution);
     System.out.println(res);
   }
@@ -143,7 +143,7 @@ class MybatisPlusDemoApplicationTests {
 
   @Test
   void testGetPrecautionsByUserId(){
-    List<Precaution> precautions = precautionMapper.getPrecautionsByUserId(8);
+    List<Integer> precautions = precautionMapper.getPrecautionsIDsByUserId(8);
     System.out.println(precautions);
   }
 
@@ -151,5 +151,15 @@ class MybatisPlusDemoApplicationTests {
   void testGetAllDoctors(){
     List<Doctor> doctors = doctorMapper.getAllDoctors();
     System.out.println(doctors);
+  }
+
+  @Test
+  void testCreateUser(){
+    User user = new User();
+    user.setFirstName("Quanle");
+    user.setLastName("Zhang");
+    user.setEmail("qz@g.com");
+    user.setAge(20);
+
   }
 }

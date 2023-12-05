@@ -13,16 +13,11 @@
     <sql id="Base_Column_List">
         id,name,description
     </sql>
-    <select id="getSymptomsByUserId"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Symptoms">
-        select *
-        from symptoms
-        where id in (
-            select symptoms_id
-            from user_symptoms
-            where user_id = #{userId}
-        )
-    </select>
+    <delete id="deleteSymptomsByUserId">
+        delete from user_symptoms
+        where user_id = #{userId}
+    </delete>
+
     <select id="getSymptomsByDiseaseId"
             resultType="com.atguigu.mybatisplusdemo.pojo.Symptoms">
         select *
@@ -45,6 +40,21 @@
                 from disease
                 where name = #{diseaseName}
             )
+        )
+    </select>
+    <select id="getSymptomsIDsByUserId" resultType="java.lang.Integer">
+        select symptoms_id
+        from user_symptoms
+        where user_id = #{userId}
+    </select>
+    <select id="getSymptomsByUserId"
+            resultType="com.atguigu.mybatisplusdemo.pojo.Symptoms">
+        select *
+        from symptoms
+        where id in (
+            select symptoms_id
+            from user_symptoms
+            where user_id = #{userId}
         )
     </select>
 </mapper>

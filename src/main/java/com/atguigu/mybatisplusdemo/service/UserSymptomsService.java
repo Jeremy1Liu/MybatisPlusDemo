@@ -15,6 +15,6 @@ public interface UserSymptomsService extends IService<UserSymptoms> {
 
   List<Symptoms> getSymptomsByUserId(Integer id);
 
-  void saveUserAndSymptoms(int savedId, List<Symptoms> symptoms);
+  void saveUserAndSymptoms(int savedId, List<Integer> symptoms);
 
 }

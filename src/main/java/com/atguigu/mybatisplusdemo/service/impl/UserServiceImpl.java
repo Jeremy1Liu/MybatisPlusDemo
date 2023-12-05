@@ -54,21 +54,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
   @Autowired
   PrecautionService precautionService;
 
-  public List<User> getUsersFullInfo() {
-    QueryWrapper<User> wrapper = new QueryWrapper<>();
-    wrapper.isNotNull("hospital_id");  // 筛选出hospital_id不为空的用户
-
-    List<User> users = userMapper.selectList(wrapper);
-
-    // 使用关联查询
-    for (User user : users) {
-      Hospital hospital = hospitalMapper.selectById(user.getHospitalId());
-      if (hospital != null) {
-
-      }
-    }
-    return users;
-  }
+//  public List<User> getUsersFullInfo() {
+//    QueryWrapper<User> wrapper = new QueryWrapper<>();
+//    wrapper.isNotNull("hospital_id");  // 筛选出hospital_id不为空的用户
+//
+//    List<User> users = userMapper.selectList(wrapper);
+//    // 使用关联查询
+//    for (User user : users) {
+//      Hospital hospital = hospitalMapper.selectById(user.getHospitalId());
+//      if (hospital != null) {
+//
+//      }
+//    }
+//    return users;
+//  }
 
 
   @Override
@@ -86,11 +85,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
       Doctor doctor = doctorMapper.selectById(userDTO.getDoctorId());
       userDTO.setDoctor(doctor);
       // get Symptoms list
-      List<Symptoms> symptoms = symptomsService.getSymptomsByUserId(userDTO.getId());
+      List<Integer> symptoms = symptomsService.getSymptomsIDsByUserId(userDTO.getId());
       userDTO.setSymptoms(symptoms);
 
       // get precautions list
-      List<Precaution> precautions = precautionService.getPrecautionsByUserId(userDTO.getId());
+      List<Integer> precautions = precautionService.getPrecautionsIDsByUserId(userDTO.getId());
       userDTO.setPrecautions(precautions);
 
     }
@@ -128,11 +127,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     Doctor doctor = doctorMapper.selectById(userDTO.getDoctorId());
     userDTO.setDoctor(doctor);
     // get Symptoms list
-    List<Symptoms> symptoms = symptomsService.getSymptomsByUserId(userDTO.getId());
+    List<Integer> symptoms = symptomsService.getSymptomsIDsByUserId(userDTO.getId());
     userDTO.setSymptoms(symptoms);
-    List<Precaution> precautions = precautionService.getPrecautionsByUserId(userDTO.getId());
+    List<Integer> precautions = precautionService.getPrecautionsIDsByUserId(userDTO.getId());
     userDTO.setPrecautions(precautions);
     return userDTO;
+  }
+
+  @Override
+  public int deleteUserById(Integer id) {
+
+    symptomsService.deleteSymptomsByUserId(id);
+    precautionService.deletePrecautionsByUserId(id);
+    userMapper.deleteById(id);
+    return 0;
+  }
+
+  @Override
+  public int updateUser(UserDTO userDTO) {
+    return 0;
   }
 }
 

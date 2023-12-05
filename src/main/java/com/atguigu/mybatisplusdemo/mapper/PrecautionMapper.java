@@ -18,7 +18,11 @@ public interface PrecautionMapper extends BaseMapper<Precaution> {
 
   List<Precaution> getPrecautionsByUserId(Integer id);
 
+  List<Integer> getPrecautionsIDsByUserId(Integer id);
+
   List<Precaution> getPrecautionByDiseaseId(Integer diseaseId);
 
   List<Precaution> getPrecautionByDiseaseName(String diseaseName);
+
+  void deletePrecautionsByUserId(Integer userId);
 }

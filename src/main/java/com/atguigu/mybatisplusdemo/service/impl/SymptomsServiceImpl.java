@@ -22,6 +22,11 @@ public class SymptomsServiceImpl extends ServiceImpl<SymptomsMapper, Symptoms>
   @Autowired SymptomsMapper symptomsMapper;
 
   @Override
+  public List<Integer> getSymptomsIDsByUserId(Integer id) {
+    return null;
+  }
+
+  @Override
   public List<Symptoms> getSymptomsByUserId(Integer id) {
     List<Symptoms> symptoms = symptomsMapper.getSymptomsByUserId(id);
     return symptoms;
@@ -37,5 +42,10 @@ public class SymptomsServiceImpl extends ServiceImpl<SymptomsMapper, Symptoms>
   public List<Symptoms> getSymptomsByDiseaseName(String diseaseName) {
     List<Symptoms> symptoms = symptomsMapper.getSymptomsByDiseaseName(diseaseName);
     return symptoms;
+  }
+
+  @Override
+  public void deleteSymptomsByUserId(Integer id) {
+    symptomsMapper.deleteSymptomsByUserId(id);
   }
 }

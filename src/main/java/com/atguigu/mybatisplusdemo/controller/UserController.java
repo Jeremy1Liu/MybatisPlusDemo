@@ -56,10 +56,10 @@ public class UserController {
     int savedId = userService.insert(userDTO);
 
     // insert user precautions
-    List<Precaution> precautions = userDTO.getPrecautions();
+    List<Integer> precautions = userDTO.getPrecautions();
     precautionService.saveUserAndPrecautions(savedId, precautions);
 
-    List<Symptoms> symptoms = userDTO.getSymptoms();
+    List<Integer> symptoms = userDTO.getSymptoms();
     userSymptomsService.saveUserAndSymptoms(savedId, symptoms);
     System.out.println(userDTO);
     return savedId;
@@ -78,9 +78,29 @@ public class UserController {
     return userService.getUserById(id);
   }
 
-  @GetMapping("/users")
+  @GetMapping("/usersFullInfo")
   public List<UserDTO> getAllUsersFullInfo() {
     List<UserDTO> userDTOs = userService.getAllUsersFullInfo();
     return userDTOs;
+  }
+
+  @GetMapping("/users")
+  public List<User> getAllUsers() {
+    List<User> users = userMapper.selectList(null);
+    return users;
+  }
+
+    @DeleteMapping("/user/{id}")
+  public int deleteUserById(@PathVariable("id") Integer id) {
+    int res = userService.deleteUserById(id);
+    return res;
+  }
+
+    @PutMapping("/user")
+  public int updateUser( @RequestBody UserDTO userDTO) {
+    int res = userService.updateUser(userDTO);
+
+    return res;
+
   }
 }

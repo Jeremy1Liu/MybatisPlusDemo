@@ -12,11 +12,16 @@ import java.util.List;
 */
 public interface PrecautionService extends IService<Precaution> {
 
-  void saveUserAndPrecautions(Integer id, List<Precaution> precautions);
+  void saveUserAndPrecautions(Integer id, List<Integer> precautions);
+
+  List<Integer> getPrecautionsIDsByUserId(Integer id);
 
   List<Precaution> getPrecautionsByUserId(Integer id);
 
   List<Precaution> getPrecautionByDiseaseId(Integer diseaseId);
 
   List<Precaution> getPrecautionByDiseaseName(String diseaseName);
+
+  void deletePrecautionsByUserId(Integer id);
+
 }

@@ -62,9 +62,9 @@ public class UserDTO {
 
     private Doctor doctor;
 
-    private List<Precaution> precautions;
+    private List<Integer> precautions;
 
-    private List<Symptoms> symptoms;
+    private List<Integer> symptoms;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

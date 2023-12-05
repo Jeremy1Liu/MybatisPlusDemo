@@ -19,4 +19,8 @@ public interface UserService extends IService<User> {
   int insert(UserDTO user);
 
   UserDTO getUserById(Integer id);
+
+  int deleteUserById(Integer id);
+
+  int updateUser(UserDTO userDTO);
 }

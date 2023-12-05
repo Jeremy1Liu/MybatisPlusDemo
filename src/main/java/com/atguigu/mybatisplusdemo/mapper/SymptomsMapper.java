@@ -15,9 +15,14 @@ public interface SymptomsMapper extends BaseMapper<Symptoms> {
 
     List<Symptoms> getSymptomsByUserId(Integer id);
 
+    List<Integer> getSymptomsIDsByUserId(Integer id);
+
     List<Symptoms> getSymptomsByDiseaseId(Integer diseaseId);
 
     List<Symptoms> getSymptomsByDiseaseName(String diseaseName);
+
+    void deleteSymptomsByUserId(Integer userId);
+
 }
 
 
