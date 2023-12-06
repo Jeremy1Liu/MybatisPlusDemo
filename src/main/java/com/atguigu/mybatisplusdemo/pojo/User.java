@@ -48,11 +48,6 @@ public class User implements Serializable {
     /**
      * 
      */
-    private Integer hospitalId;
-
-    /**
-     * 
-     */
     private Integer diseaseId;
 
     /**

@@ -22,6 +22,8 @@ import com.atguigu.mybatisplusdemo.mapper.UserMapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -81,9 +83,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     for (User user : users) {
       UserDTO userDTO = modelMapper.map(user, UserDTO.class);
       userDTOS.add(userDTO);
-      // get disease object
-
-      //get doctor object
 
       // get Symptoms list
       List<Integer> symptoms = symptomsService.getSymptomsIDsByUserId(userDTO.getId());
@@ -102,32 +101,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     // check the input data
     // check the valid age
 
-
-
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.typeMap(UserDTO.class, User.class)
             .addMapping(UserDTO::getDiseaseId, User::setDiseaseId)
             .addMapping(UserDTO::getDoctorId, User::setDoctorId);
 
     User user1 = modelMapper.map(user, User.class);
-    int insert = userMapper.insert(user1);
-//    System.out.println("insert: " + user1);
-
-    if(user1.getId() != null) {
-      // insert user precautions
+    try {
+      userMapper.insert(user1);
+      // Continue with other operations if needed
       return user1.getId();
-    } else{
-      return -1;
+    } catch ( DataIntegrityViolationException e) {
+      // Handle the exception, log it, or return an error message to the frontend
+      System.out.println("Duplicate entry error: " + e.getMessage());
+      // You can customize the error message or throw a custom exception if needed
+      throw new RuntimeException("Error: Duplicate entry for email");
     }
+    
+
+//    System.out.println("insert: " + user1);
   }
 
   @Override
   public UserDTO getUserById(Integer id) {
-
-
-
-
-
     User user = userMapper.selectById(id);
     ModelMapper modelMapper = new ModelMapper();
     UserDTO userDTO = modelMapper.map(user, UserDTO.class);

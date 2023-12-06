@@ -34,8 +34,6 @@ public interface UserMapper extends BaseMapper<User> {
                   @Result(column = "gender", property = "gender"),
                   @Result(column = "hospital_id", property = "hospitalId"),
                   @Result(column = "disease_id", property = "diseaseId"),
-                  @Result(column = "hospital_id", property = "hospital", javaType = Hospital.class,
-                          one = @One(select = "com.atguigu.mybatisplusdemo.mapper.HospitalMapper.selectById")),
                   @Result(column = "id", property = "precautions", javaType = List.class,
                           many = @Many(select = "com.atguigu.mybatisplusdemo.mapper.PrecautionMapper.selectByUserId"))
           }

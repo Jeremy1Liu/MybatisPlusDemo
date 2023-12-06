@@ -46,11 +46,6 @@ public class UserDTO {
     /**
      *
      */
-    private Integer hospitalId;
-
-    /**
-     *
-     */
     private Integer diseaseId;
 
     /**
