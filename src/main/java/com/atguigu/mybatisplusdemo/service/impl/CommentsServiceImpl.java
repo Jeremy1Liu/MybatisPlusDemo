@@ -5,10 +5,14 @@ import com.atguigu.mybatisplusdemo.pojo.Comments;
 import com.atguigu.mybatisplusdemo.service.CommentsService;
 import com.atguigu.mybatisplusdemo.mapper.CommentsMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+
 
 /**
 * @author Quanle
@@ -19,12 +23,20 @@ import java.util.List;
 public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
     implements CommentsService{
 
+  private static final Logger logger = LoggerFactory.getLogger(CommentsServiceImpl.class);
+
   @Autowired
   CommentsMapper commentsMapper;
   @Override
   public List<Comments> getCommentByBlogId(Integer blogId) {
-    List<Comments> comments = commentsMapper.getCommentByBlogId(blogId);
-    return comments;
+    try {
+      List<Comments> comments = commentsMapper.getCommentByBlogId(blogId);
+      return comments;
+    } catch (Exception e) {
+      // Log the exception
+      logger.error("Error occurred while fetching comments for blog ID " + blogId, e);
+      return Collections.emptyList();
+    }
   }
 }
 

@@ -4,11 +4,7 @@ import com.atguigu.mybatisplusdemo.pojo.Comments;
 import com.atguigu.mybatisplusdemo.service.CommentsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +20,12 @@ public class CommentController {
   }
 
   @GetMapping("/comment/{id}")
-  public Comments getCommentById(Integer id) {
+  public Comments getCommentById(@PathVariable Integer id) {
     return commentsService.getById(id);
   }
 
   @GetMapping("/comment/blog/{blogId}")
-  public List<Comments> getCommentByBlogId(Integer blogId) {
+  public List<Comments> getCommentByBlogId(@PathVariable("blogId") Integer blogId) {
     return commentsService.getCommentByBlogId(blogId);
   }
 

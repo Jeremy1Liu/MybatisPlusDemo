@@ -6,6 +6,8 @@ import com.atguigu.mybatisplusdemo.pojo.UserSymptoms;
 import com.atguigu.mybatisplusdemo.service.UserSymptomsService;
 import com.atguigu.mybatisplusdemo.mapper.UserSymptomsMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class UserSymptomsServiceImpl extends ServiceImpl<UserSymptomsMapper, UserSymptoms>
     implements UserSymptomsService{
 
+  private static final Logger logger = LoggerFactory.getLogger(UserSymptomsService.class);
   @Autowired
   UserSymptomsMapper userSymptomsMapper;
 
@@ -32,11 +35,14 @@ public class UserSymptomsServiceImpl extends ServiceImpl<UserSymptomsMapper, Use
   @Override
   public void saveUserAndSymptoms(int savedId, List<Integer> symptoms) {
     for (Integer symptom : symptoms) {
-      // save user symptom
-      UserSymptoms userSymptoms = new UserSymptoms();
-      userSymptoms.setUserId(savedId);
-      userSymptoms.setSymptomsId(symptom);
-      userSymptomsMapper.insert(userSymptoms);
+      try {
+        UserSymptoms userSymptoms = new UserSymptoms();
+        userSymptoms.setUserId(savedId);
+        userSymptoms.setSymptomsId(symptom);
+        userSymptomsMapper.insert(userSymptoms);
+      } catch (Exception e) {
+        logger.error("Error occurred while saving user symptom for user ID " + savedId + " and symptom ID " + symptom, e);
+      }
     }
   }
 }

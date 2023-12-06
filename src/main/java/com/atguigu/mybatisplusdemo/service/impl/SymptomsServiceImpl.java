@@ -5,9 +5,12 @@ import com.atguigu.mybatisplusdemo.pojo.Symptoms;
 import com.atguigu.mybatisplusdemo.service.SymptomsService;
 import com.atguigu.mybatisplusdemo.mapper.SymptomsMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,30 +22,48 @@ import java.util.List;
 public class SymptomsServiceImpl extends ServiceImpl<SymptomsMapper, Symptoms>
     implements SymptomsService {
 
+  private static final Logger logger = LoggerFactory.getLogger(SymptomsService.class);
+
   @Autowired SymptomsMapper symptomsMapper;
 
   @Override
   public List<Integer> getSymptomsIDsByUserId(Integer id) {
-    List<Integer> symptomsIDsByUserId = symptomsMapper.getSymptomsIDsByUserId(id);
-    return symptomsIDsByUserId;
+    try {
+      return symptomsMapper.getSymptomsIDsByUserId(id);
+    } catch (Exception e) {
+      logger.error("Error occurred while fetching symptom IDs for user ID " + id, e);
+      return Collections.emptyList();
+    }
   }
 
   @Override
   public List<Symptoms> getSymptomsByUserId(Integer id) {
-    List<Symptoms> symptoms = symptomsMapper.getSymptomsByUserId(id);
-    return symptoms;
+    try {
+      return symptomsMapper.getSymptomsByUserId(id);
+    } catch (Exception e) {
+      logger.error("Error occurred while fetching symptoms for user ID " + id, e);
+      return Collections.emptyList();
+    }
   }
 
   @Override
   public List<Symptoms> getSymptomsByDiseaseId(Integer diseaseId) {
-    List<Symptoms> symptoms = symptomsMapper.getSymptomsByDiseaseId(diseaseId);
-    return symptoms;
+    try {
+      return symptomsMapper.getSymptomsByDiseaseId(diseaseId);
+    } catch (Exception e) {
+      logger.error("Error occurred while fetching symptoms for disease ID " + diseaseId, e);
+      return Collections.emptyList();
+    }
   }
 
   @Override
   public List<Symptoms> getSymptomsByDiseaseName(String diseaseName) {
-    List<Symptoms> symptoms = symptomsMapper.getSymptomsByDiseaseName(diseaseName);
-    return symptoms;
+    try {
+      return symptomsMapper.getSymptomsByDiseaseName(diseaseName);
+    } catch (Exception e) {
+      logger.error("Error occurred while fetching symptoms for disease named " + diseaseName, e);
+      return Collections.emptyList();
+    }
   }
 
   @Override

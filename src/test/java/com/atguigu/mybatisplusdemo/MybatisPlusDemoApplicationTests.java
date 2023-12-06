@@ -1,20 +1,8 @@
 package com.atguigu.mybatisplusdemo;
 
-import com.atguigu.mybatisplusdemo.mapper.DiseaseMapper;
-import com.atguigu.mybatisplusdemo.mapper.DoctorMapper;
-import com.atguigu.mybatisplusdemo.mapper.HospitalMapper;
-import com.atguigu.mybatisplusdemo.mapper.PrecautionMapper;
-import com.atguigu.mybatisplusdemo.mapper.SymptomsMapper;
-import com.atguigu.mybatisplusdemo.mapper.UserMapper;
-import com.atguigu.mybatisplusdemo.mapper.UserPrecautionMapper;
-import com.atguigu.mybatisplusdemo.pojo.Disease;
-import com.atguigu.mybatisplusdemo.pojo.Doctor;
-import com.atguigu.mybatisplusdemo.pojo.Hospital;
-import com.atguigu.mybatisplusdemo.pojo.Precaution;
-import com.atguigu.mybatisplusdemo.pojo.Symptoms;
-import com.atguigu.mybatisplusdemo.pojo.User;
-import com.atguigu.mybatisplusdemo.pojo.UserDTO;
-import com.atguigu.mybatisplusdemo.pojo.UserPrecaution;
+import com.atguigu.mybatisplusdemo.mapper.*;
+import com.atguigu.mybatisplusdemo.pojo.*;
+import com.atguigu.mybatisplusdemo.service.CommentsService;
 import com.atguigu.mybatisplusdemo.service.UserService;
 
 import org.junit.jupiter.api.Test;
@@ -51,6 +39,11 @@ class MybatisPlusDemoApplicationTests {
   @Autowired
   SymptomsMapper symptomsMapper;
 
+  @Autowired
+  CommentsMapper commentsMapper;
+
+  @Autowired
+  CommentsService commentsService;
 
   @Test
   void testGetAllDisease() {
@@ -165,4 +158,13 @@ class MybatisPlusDemoApplicationTests {
     System.out.println(insert);
 
   }
+
+  @Test
+  void testGetCommentsByBlog() {
+    List<Comments> comments = commentsService.getCommentByBlogId(2);
+    System.out.println("Here is the comment!");
+    System.out.println(comments);
+  }
+
+
 }

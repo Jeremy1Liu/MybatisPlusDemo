@@ -5,9 +5,12 @@ import com.atguigu.mybatisplusdemo.pojo.Doctor;
 import com.atguigu.mybatisplusdemo.service.DoctorService;
 import com.atguigu.mybatisplusdemo.mapper.DoctorMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,18 +22,29 @@ import java.util.List;
 public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor>
     implements DoctorService{
 
+  private static final Logger logger = LoggerFactory.getLogger(DoctorService.class);
+
   @Autowired
   DoctorMapper doctorMapper;
 
   @Override
   public List<Doctor> listAll() {
-    List<Doctor> doctors = doctorMapper.getAllDoctors();
-    return doctors;
+    try {
+      return doctorMapper.getAllDoctors();
+    } catch (Exception e) {
+      logger.error("Error occurred while fetching the list of doctors", e);
+      return Collections.emptyList();
+    }
   }
 
   @Override
   public int insertOneDoctor(Doctor doctor) {
-    return doctorMapper.insertOneDoctor(doctor);
+    try {
+      return doctorMapper.insertOneDoctor(doctor);
+    } catch (Exception e) {
+      logger.error("Error occurred while inserting a doctor: " + doctor, e);
+      return -1; // Example: returning -1 to indicate an error
+    }
   }
 
   @Override
