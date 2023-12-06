@@ -14,6 +14,8 @@ import java.util.List;
 public interface CommentsMapper extends BaseMapper<Comments> {
 
   List<Comments> getCommentByBlogId(Integer blogId);
+
+  int insertOneComment(Comments comment);
 }
 
 

@@ -30,8 +30,8 @@ public class CommentController {
   }
 
   @PostMapping("/comment")
-  public boolean addComment(@RequestBody Comments comment) {
-    return commentsService.save(comment);
+  public int addComment(@RequestBody Comments comment) {
+    return commentsService.insertOneComment(comment);
   }
 
   @DeleteMapping("/comment/{id}")

@@ -14,4 +14,5 @@ public interface CommentsService extends IService<Comments> {
 
   List<Comments> getCommentByBlogId(Integer blogId);
 
+  int insertOneComment(Comments comment);
 }

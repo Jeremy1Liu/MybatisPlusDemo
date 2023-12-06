@@ -38,6 +38,16 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
       return Collections.emptyList();
     }
   }
+
+  @Override
+  public int insertOneComment(Comments comment) {
+    try {
+      return commentsMapper.insertOneComment(comment);
+    } catch (Exception e) {
+      logger.error("Error occurred while adding a comment: " + comment, e);
+      return -1; // Example: returning -1 to indicate an error
+    }
+  }
 }
 
 
