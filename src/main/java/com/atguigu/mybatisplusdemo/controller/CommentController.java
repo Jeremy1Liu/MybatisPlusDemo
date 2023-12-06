@@ -35,7 +35,7 @@ public class CommentController {
   }
 
   @DeleteMapping("/comment/{id}")
-  public boolean deleteCommentById(Integer id) {
+  public boolean deleteCommentById(@PathVariable Integer id) {
     return commentsService.removeById(id);
   }
 
