@@ -16,14 +16,18 @@ import java.util.List;
 
 @RestController
 public class DoctorController {
-  @Autowired
-  DoctorService doctorService;
+  @Autowired DoctorService doctorService;
 
   // return all doctors
   @GetMapping("/doctors")
   public List<Doctor> getAllDoctors() {
     List<Doctor> doctors = doctorService.listAll();
     return doctors;
+  }
+
+  @GetMapping("/doctors/hospital/{hospitalId}")
+  public List<Doctor> getDoctorsByHospitalId(@PathVariable("hospitalId") Integer hospitalId) {
+    return doctorService.getDoctorsByHospitalId(hospitalId);
   }
 
   @GetMapping("/doctor/{id}")
@@ -34,7 +38,7 @@ public class DoctorController {
   @PostMapping("/doctor")
   public int createDoctor(@RequestBody Doctor doctor) {
     return doctorService.insertOneDoctor(doctor);
-    }
+  }
 
   @DeleteMapping("/doctor/{id}")
   public boolean deleteDoctorById(@PathVariable("id") Integer id) {
@@ -45,5 +49,4 @@ public class DoctorController {
   public boolean updateDoctor(@RequestBody Doctor doctor) {
     return doctorService.updateById(doctor);
   }
-
 }

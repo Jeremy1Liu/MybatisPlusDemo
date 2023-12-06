@@ -16,4 +16,5 @@ public interface DoctorService extends IService<Doctor> {
 
     int insertOneDoctor(Doctor doctor);
 
+  List<Doctor> getDoctorsByHospitalId(Integer hospitalId);
 }

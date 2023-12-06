@@ -27,4 +27,8 @@
     <select id="getAllDoctors" resultType="com.atguigu.mybatisplusdemo.pojo.Doctor">
         select * from doctor;
     </select>
+
+    <select id="getDoctorsByHospitalId" resultMap="BaseResultMap">
+        select * from doctor where hospital_id = #{hospitalId};
+    </select>
 </mapper>
