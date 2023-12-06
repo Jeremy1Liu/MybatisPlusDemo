@@ -23,7 +23,7 @@ public interface UserMapper extends BaseMapper<User> {
 
 
 
-  //id, name, email, age, gender, hospital_id, hospital_name, disease_id, disease_name
+  //id, name, email, age, gender, disease_id, disease_name
   @Select("select * from user")
   @Results(
           {
@@ -32,7 +32,6 @@ public interface UserMapper extends BaseMapper<User> {
                   @Result(column = "email", property = "email"),
                   @Result(column = "age", property = "age"),
                   @Result(column = "gender", property = "gender"),
-                  @Result(column = "hospital_id", property = "hospitalId"),
                   @Result(column = "disease_id", property = "diseaseId"),
                   @Result(column = "id", property = "precautions", javaType = List.class,
                           many = @Many(select = "com.atguigu.mybatisplusdemo.mapper.PrecautionMapper.selectByUserId"))

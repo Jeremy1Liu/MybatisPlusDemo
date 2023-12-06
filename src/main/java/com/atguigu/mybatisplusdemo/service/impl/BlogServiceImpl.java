@@ -32,7 +32,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog>
   @Override
   public boolean addBlog(Blog blog) {
     int insert = blogMapper.insertBlog(blog);
-    return false;
+    return insert == 1;
   }
 }
 
