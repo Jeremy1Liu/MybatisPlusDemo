@@ -27,6 +27,11 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor>
     List<Doctor> doctors = doctorMapper.getAllDoctors();
     return doctors;
   }
+
+  @Override
+  public int insertOneDoctor(Doctor doctor) {
+    return doctorMapper.insertOneDoctor(doctor);
+  }
 }
 
 

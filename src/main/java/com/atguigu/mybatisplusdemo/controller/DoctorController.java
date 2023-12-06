@@ -32,9 +32,9 @@ public class DoctorController {
   }
 
   @PostMapping("/doctor")
-  public boolean createDoctor(@RequestBody Doctor doctor) {
-    return doctorService.save(doctor);
-  }
+  public int createDoctor(@RequestBody Doctor doctor) {
+    return doctorService.insertOneDoctor(doctor);
+    }
 
   @DeleteMapping("/doctor/{id}")
   public boolean deleteDoctorById(@PathVariable("id") Integer id) {
