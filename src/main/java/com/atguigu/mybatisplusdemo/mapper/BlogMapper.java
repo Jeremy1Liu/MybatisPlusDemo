@@ -1,7 +1,10 @@
 package com.atguigu.mybatisplusdemo.mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.atguigu.mybatisplusdemo.pojo.Blog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author Quanle
@@ -11,6 +14,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface BlogMapper extends BaseMapper<Blog> {
 
+
+  List<Blog> getAllByUserId(@Param("userId") Integer userId);
+
+  int insertBlog(Blog blog);
 }
 
 

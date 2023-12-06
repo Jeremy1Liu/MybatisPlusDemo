@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.atguigu.mybatisplusdemo.pojo.Comments;
 import com.atguigu.mybatisplusdemo.service.CommentsService;
 import com.atguigu.mybatisplusdemo.mapper.CommentsMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Quanle
@@ -15,6 +19,13 @@ import org.springframework.stereotype.Service;
 public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments>
     implements CommentsService{
 
+  @Autowired
+  CommentsMapper commentsMapper;
+  @Override
+  public List<Comments> getCommentByBlogId(Integer blogId) {
+    List<Comments> comments = commentsMapper.getCommentByBlogId(blogId);
+    return comments;
+  }
 }
 
 

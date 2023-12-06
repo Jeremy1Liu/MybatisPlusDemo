@@ -16,4 +16,16 @@
         id,title,content,
         date,user_id
     </sql>
+    <insert id="insertBlog">
+        call
+    </insert>
+
+    <select id="getAllByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from blog
+        where
+        user_id = #{userId,jdbcType=NUMERIC}
+    </select>
+
 </mapper>

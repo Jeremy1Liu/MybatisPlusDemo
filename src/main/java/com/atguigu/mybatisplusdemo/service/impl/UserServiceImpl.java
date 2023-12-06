@@ -99,6 +99,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
   @Override
   public int insert(UserDTO user) {
+    // check the input data
+    // check the valid age
+
+
+
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.typeMap(UserDTO.class, User.class)
             .addMapping(UserDTO::getDiseaseId, User::setDiseaseId)
@@ -118,6 +123,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
   @Override
   public UserDTO getUserById(Integer id) {
+
+
+
+
+
     User user = userMapper.selectById(id);
     ModelMapper modelMapper = new ModelMapper();
     UserDTO userDTO = modelMapper.map(user, UserDTO.class);

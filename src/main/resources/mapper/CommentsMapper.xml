@@ -16,4 +16,11 @@
         id,blog_id,user_id,
         date,content
     </sql>
+    <select id="getCommentByBlogId" resultType="com.atguigu.mybatisplusdemo.pojo.Comments">
+        select
+        <include refid="Base_Column_List"/>
+        from comments
+        where
+        blog_id = #{blogId,jdbcType=NUMERIC}
+    </select>
 </mapper>

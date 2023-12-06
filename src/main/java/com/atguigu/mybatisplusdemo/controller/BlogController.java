@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Wrapper;
 import java.util.List;
 
 @RestController
@@ -31,12 +32,23 @@ public class BlogController {
 
   @PostMapping("/blog")
   public boolean createBlog(@RequestBody Blog blog) {
-    return blogService.save(blog);
+    return blogService.addBlog(blog);
   }
 
   @PutMapping("/blog")
   public boolean updateBlog(@RequestBody Blog blog) {
     return blogService.updateById(blog);
+  }
+
+  // filter the blogs by user id
+  @GetMapping("/blogs/userId/{userId}")
+  public List<Blog> getBlogByUserId(@PathVariable Integer userId) {
+    // filter blogs by userId
+    // return blogs list
+
+    return blogService.getBlogByUserId(userId);
+
+
   }
 
 
