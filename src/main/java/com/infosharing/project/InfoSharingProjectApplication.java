@@ -5,11 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.atguigu.mybatisplusdemo.mapper")
-public class MybatisPlusDemoApplication {
+@MapperScan("com.infosharing.project.mapper")
+public class InfoSharingProjectApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(MybatisPlusDemoApplication.class, args);
+    SpringApplication.run(InfoSharingProjectApplication.class, args);
   }
 
 }

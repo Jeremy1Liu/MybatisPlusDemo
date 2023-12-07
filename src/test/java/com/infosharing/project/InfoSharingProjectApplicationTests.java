@@ -1,7 +1,5 @@
 package com.infosharing.project;
 
-import com.atguigu.mybatisplusdemo.mapper.*;
-import com.atguigu.mybatisplusdemo.pojo.*;
 import com.infosharing.project.mapper.CommentsMapper;
 import com.infosharing.project.mapper.DiseaseMapper;
 import com.infosharing.project.mapper.DoctorMapper;
@@ -29,7 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class MybatisPlusDemoApplicationTests {
+class InfoSharingProjectApplicationTests {
 
 
   @Autowired
