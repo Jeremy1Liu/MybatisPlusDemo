@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mybatisplusdemo.mapper.DoctorMapper">
+<mapper namespace="com.infosharing.project.mapper.DoctorMapper">
 
-    <resultMap id="BaseResultMap" type="com.atguigu.mybatisplusdemo.pojo.Doctor">
+    <resultMap id="BaseResultMap" type="com.infosharing.project.pojo.Doctor">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="firstName" column="first_name" jdbcType="VARCHAR"/>
             <result property="lastName" column="last_name" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
               #{qualification, mode=IN, jdbcType=VARCHAR},
               #{hospitalId, mode=IN, jdbcType=INTEGER})}
     </insert>
-    <select id="getAllDoctors" resultType="com.atguigu.mybatisplusdemo.pojo.Doctor">
+    <select id="getAllDoctors" resultType="com.infosharing.project.pojo.Doctor">
         select * from doctor;
     </select>
 

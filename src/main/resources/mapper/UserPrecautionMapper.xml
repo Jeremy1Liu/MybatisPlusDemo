@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mybatisplusdemo.mapper.UserPrecautionMapper">
+<mapper namespace="com.infosharing.project.mapper.UserPrecautionMapper">
 
-    <resultMap id="BaseResultMap" type="com.atguigu.mybatisplusdemo.pojo.UserPrecaution">
+    <resultMap id="BaseResultMap" type="com.infosharing.project.pojo.UserPrecaution">
             <id property="userId" column="user_id" jdbcType="INTEGER"/>
             <id property="precautionId" column="precaution_id" jdbcType="INTEGER"/>
     </resultMap>
@@ -13,7 +13,7 @@
         user_id,precaution_id
     </sql>
     <select id="getPrecautionsByUserId"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+            resultType="com.infosharing.project.pojo.Precaution">
         select * from precaution where precaution_id in
         (select precaution_id from user_precaution where user_id = #{userId})
     </select>

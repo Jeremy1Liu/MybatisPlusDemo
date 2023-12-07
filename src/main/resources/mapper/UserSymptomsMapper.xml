@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mybatisplusdemo.mapper.UserSymptomsMapper">
+<mapper namespace="com.infosharing.project.mapper.UserSymptomsMapper">
 
-    <resultMap id="BaseResultMap" type="com.atguigu.mybatisplusdemo.pojo.UserSymptoms">
+    <resultMap id="BaseResultMap" type="com.infosharing.project.pojo.UserSymptoms">
             <id property="userId" column="user_id" jdbcType="INTEGER"/>
             <id property="symptomsId" column="symptoms_id" jdbcType="INTEGER"/>
     </resultMap>

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mybatisplusdemo.mapper.PrecautionMapper">
+<mapper namespace="com.infosharing.project.mapper.PrecautionMapper">
 
-    <resultMap id="BaseResultMap" type="com.atguigu.mybatisplusdemo.pojo.Precaution">
+    <resultMap id="BaseResultMap" type="com.infosharing.project.pojo.Precaution">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
@@ -17,7 +17,7 @@
         where user_id = #{userId}
     </delete>
 
-    <select id="selectByUserId" resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+    <select id="selectByUserId" resultType="com.infosharing.project.pojo.Precaution">
         SELECT p.*
         FROM precaution p
                  JOIN user_precaution up ON p.id = up.precaution_id
@@ -25,14 +25,14 @@
     </select>
 
     <select id="getPrecautionByDiseaseId"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+            resultType="com.infosharing.project.pojo.Precaution">
         select *
         from precaution
         where id in
               (select precaution_id from disease_precaution where disease_id = #{diseaseId})
     </select>
     <select id="getPrecautionByDiseaseName"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+            resultType="com.infosharing.project.pojo.Precaution">
         select *
         from precaution
         where id in
@@ -42,7 +42,7 @@
                      (select id from disease where name = #{diseaseName}))
     </select>
     <select id="getPrecautionsByUserId"
-            resultType="com.atguigu.mybatisplusdemo.pojo.Precaution">
+            resultType="com.infosharing.project.pojo.Precaution">
         select *
         from precaution
         where id in
