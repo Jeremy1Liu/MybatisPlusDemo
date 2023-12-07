@@ -16,4 +16,5 @@ public interface BlogService extends IService<Blog> {
 
   boolean addBlog(Blog blog);
 
+    void deleteBlogById(Integer blogId);
 }

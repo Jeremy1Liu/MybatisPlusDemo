@@ -4,12 +4,7 @@ import com.atguigu.mybatisplusdemo.pojo.Blog;
 import com.atguigu.mybatisplusdemo.service.BlogService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Wrapper;
 import java.util.List;
@@ -47,9 +42,13 @@ public class BlogController {
     // return blogs list
 
     return blogService.getBlogByUserId(userId);
-
-
   }
+
+  @DeleteMapping("/blog/{blogId}")
+  public void deleteBlogById(@PathVariable Integer blogId) {
+    blogService.deleteBlogById(blogId);
+  }
+
 
 
 

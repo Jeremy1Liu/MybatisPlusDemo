@@ -34,6 +34,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog>
     int insert = blogMapper.insertBlog(blog);
     return insert == 1;
   }
+
+  @Override
+  public void deleteBlogById(Integer blogId) {
+    blogMapper.deleteById(blogId);
+  }
 }
 
 
