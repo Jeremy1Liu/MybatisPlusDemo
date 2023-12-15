@@ -93,4 +93,10 @@ public class UserController {
     return res;
   }
 
+  @GetMapping("/")
+  public String welcome(){
+    return "Welcome to Infosharing project!";
+  }
+
+
 }
