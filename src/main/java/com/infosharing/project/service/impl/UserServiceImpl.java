@@ -103,10 +103,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
       // Continue with other operations if needed
       return user1.getId();
     } catch ( DataIntegrityViolationException e) {
-      // Handle the exception, log it, or return an error message to the frontend
-      System.out.println("Duplicate entry error: " + e.getMessage());
       // You can customize the error message or throw a custom exception if needed
-      throw new RuntimeException("Error: Duplicate entry for email");
+      throw new RuntimeException("Error: missing fields");
     }
     
 
